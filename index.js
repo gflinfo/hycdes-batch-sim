@@ -41,6 +41,7 @@ var batchRunner = {
             enemyArmor: [],
         },
         runCount: 100,
+        dollSpecials:[]
     },
     initSettings : function () {
 
@@ -52,6 +53,7 @@ var batchRunner = {
         this.settings.position = 7;
         this.settings.simSettings.enemyEva.length = 0;
         this.settings.simSettings.enemyArmor.length = 0;
+        this.settings.dollSpecials.length = 0;
 
         this.customSettings(this.settings, this.enums);
         console.debug(this.settings);
@@ -152,6 +154,10 @@ var batchRunner = {
                                 this.settings.equips[2].forEach(bodyId => {
                                     this.setDollIndex(i, accId, ammoId, bodyId)
 
+                                    var dollValue = document.getElementById('select_tdoll').options[i].value;
+                                    var customDollHandler = this.settings.dollSpecials[dollValue];
+                                    if (customDollHandler) customDollHandler();
+
                                     // record result
                                     getResult(this.settings.runCount,'damage')
 
@@ -166,7 +172,7 @@ var batchRunner = {
                                     };
 
                                     var previousTime = 0.0
-                                    Set_Data.get(0).forEach(d => {
+                                    Set_Data.get(this.settings.position - 1).forEach(d => {
                                         var currentTime = parseFloat(d[0])
                                         if (previousTime < 6 && currentTime >= 6) {												// 6  second variable
                                             dollTestOutput.t6 = d[1]
