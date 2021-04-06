@@ -1,5 +1,5 @@
 batchRunner.customSettings = function (settingsObj, enums) {
-    settingsObj.position = 1;
+    settingsObj.position = 5;
 
     // init default values
     settingsObj.stars.push(2);
@@ -21,5 +21,10 @@ batchRunner.customSettings = function (settingsObj, enums) {
 	  }
     settingsObj.simSettings.enemyArmor = [0];
     settingsObj.runCount = 100;
+	
+    settingsObj.dollSpecials[1056] = function() {
+	// note the last digit of the element name is position dependent.
+        document.getElementById('special_m4_4').checked = true;
+    };
 }
 batchRunner.execute();
