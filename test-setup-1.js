@@ -22,5 +22,4 @@ batchRunner.customSettings = function (settingsObj, enums) {
     settingsObj.simSettings.enemyArmor = [0];
     settingsObj.runCount = 100;
 }
-batchRunner.initSettings();
 batchRunner.execute();
