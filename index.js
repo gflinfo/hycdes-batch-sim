@@ -125,6 +125,7 @@ var batchRunner = {
         return true;
     },
     execute : function () {
+        this.initSettings();
         this.setPosition(this.settings.position);
         this.setGunType();
         dataSet = []
