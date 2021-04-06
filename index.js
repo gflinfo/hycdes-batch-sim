@@ -127,6 +127,7 @@ var batchRunner = {
     execute : function () {
         this.setPosition(this.settings.position);
         this.setGunType();
+        dataSet = []
 
         // hmm this is not ideal, but i'll leave settings combinations for next time.
         this.settings.simSettings.enemyEva.forEach(eva => {
@@ -139,8 +140,7 @@ var batchRunner = {
     
                 // Loop stars
                 this.settings.stars.forEach(star => {
-                    changeStar(star)
-                    document.getElementById('enemy_eva').value = k + 10
+                    changeStar(star);
 
                     // Loop through every available doll.
                     for (i = 0; i < document.getElementById('select_tdoll').options.length; i++) {
@@ -177,8 +177,7 @@ var batchRunner = {
                                         previousTime = currentTime
                                     })
 
-                                    console.log(dollTestOutput);
-                                    //return dollTestOutput
+                                    dataSet.push(dollTestOutput)
                                 });
                             });
                         });
@@ -186,5 +185,7 @@ var batchRunner = {
                 })
             });
         });
+
+        console.log(dataSet.map(d => [d.name, d.equips[0], d.equips[1], d.equips[2], d.fairy, d.eva, d.t6, d.t10, d.t15, d.damage].join("	")).join("\n"))
     },
 };
